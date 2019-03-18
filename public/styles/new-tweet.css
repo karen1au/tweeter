@@ -14,6 +14,10 @@ main .counter {
   line-height: 2em;
 }
 
+.error {
+  color: red;
+}
+
 
 .new-tweet h2 {
   border-bottom: 1px solid black;
