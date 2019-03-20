@@ -1,3 +1,4 @@
+// security check for user input
 function escape(str) {
   var div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
@@ -5,16 +6,12 @@ function escape(str) {
 }
 
 $(document).ready(function() {
-  // Test / driver code (temporary). Eventually will get this from the server.
-
-
-
+  //adding tweet from data base
   function renderTweets(tweets) {
     for (let individual = 0; individual < tweets.length; individual++) {
       $('#tweets-container').prepend(createTweetElement(tweets[individual]));
     }
   }
-
 
   function createTweetElement(data) {
     let $tweet = `
@@ -38,7 +35,7 @@ $(document).ready(function() {
       </article>`;
     return $tweet;
   }
-
+  //load tweets from database
   function loadTweets(){
     $.get('http://localhost:8080/tweets', function (allTweets){
       renderTweets(allTweets);
@@ -47,6 +44,7 @@ $(document).ready(function() {
 
   loadTweets();
 
+  //post submit form with validation check
   $('form').submit(function(event){
   var newTweet = $(this).serialize();
   if (newTweet.length > 145){
@@ -60,5 +58,11 @@ $(document).ready(function() {
   }
   event.preventDefault();
   });
+
+  //toggling new tweet form
+  $('#compose').click(function(){
+    $('.new-tweet').toggle();
+    $('textarea').focus();
+  })
 
 });
