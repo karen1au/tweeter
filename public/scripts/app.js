@@ -25,7 +25,7 @@ $(document).ready(function() {
           <p>${escape(data.content.text)}</p>
         </div>
         <footer>
-          <span class="post_date">${escape(data.created_at)}</span>
+          <span class="post_date">${escape(moment(data.created_at).fromNow())}</span>
           <div class="icon">
             <i class="fas fa-flag"></i>
             <i class="fas fa-retweet"></i>
