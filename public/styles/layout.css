@@ -21,6 +21,10 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+/*
+ * Additional CSS can be defined below or in other CSS files, as per instructions
+ */
+
 main {
   width: 450px;
   background-color: white;
@@ -46,7 +50,6 @@ article:hover {
 article .avatar {
   border-radius: 5px;
   margin: 0.5em;
-
 }
 
 article header {
@@ -104,6 +107,3 @@ article:hover > footer .icon {
 footer i {
   margin-left: 0.4em;
 }
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
