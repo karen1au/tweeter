@@ -64,7 +64,7 @@ $(document).ready(function() {
 
   //toggling new tweet form
   $('#compose').click(function(){
-    $('.new-tweet').toggle();
+    $('.new-tweet').slideToggle();
     $('textarea').focus();
   });
 

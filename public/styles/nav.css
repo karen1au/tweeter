@@ -34,6 +34,7 @@
 
 #nav-bar #compose {
   color: #00a087;
+  font-weight: bold;
   padding: 0.5em;
   border: 1px solid white;
   border-radius: 5px;
