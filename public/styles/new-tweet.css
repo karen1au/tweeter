@@ -27,3 +27,8 @@ main .counter {
 textarea {
   width: 100%;
 }
+
+.new-tweet input {
+  border-radius: 5px;
+  margin-top: 0.5em;
+}

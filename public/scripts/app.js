@@ -48,14 +48,17 @@ $(document).ready(function() {
   $('form').submit(function(event){
   var newTweet = $(this).serialize();
   if (newTweet.length > 145){
-    alert('Time to Marie Kondo your tweet...');
+    $('#input_long').text('Time to Marie Kondo your tweet!');
+    $('.error_input').fadeIn('fast');
   } else if (newTweet == 'text='){
-    alert('I can\'t hear you!');
-  } else {
-    $.post("http://localhost:8080/tweets", newTweet, function(){
-      location.reload();
-    });
-  }
+      $('#input_long').text('I can\'t hear you!');
+      $('.error_input').fadeIn('fast');
+    } else {
+      $('.error_input').fadeOut('fast');
+      $.post("http://localhost:8080/tweets", newTweet, function(){
+        location.reload();
+      });
+    }
   event.preventDefault();
   });
 
@@ -63,6 +66,7 @@ $(document).ready(function() {
   $('#compose').click(function(){
     $('.new-tweet').toggle();
     $('textarea').focus();
-  })
+  });
+
 
 });
