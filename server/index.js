@@ -17,19 +17,12 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     console.error(`Failed to connect: ${MONGODB_URI}`);
     throw err;
   }
-
   console.log(`Connected to mongodb: ${MONGODB_URI}`);
+
   const DataHelpers = require("./lib/data-helpers.js")(db);
-
-
   const tweetsRoutes = require("./routes/tweets")(DataHelpers);
 
   app.use("/tweets", tweetsRoutes);
-
-    // db.close();
-
-
-
 
 });
 

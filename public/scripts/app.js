@@ -46,27 +46,27 @@ $(document).ready(function() {
 
   //post submit form with validation check
   $('form').submit(function(event){
-  var newTweet = $(this).serialize();
-  if (newTweet.length > 145){
-    $('#input_long').text('Time to Marie Kondo your tweet!');
-    $('.error_input').fadeIn('fast');
-  } else if (newTweet == 'text='){
+    var newTweet = $(this).serialize();
+    if (newTweet.length > 145){
+      $('#input_long').text('Time to Marie Kondo your tweet!');
+      $('.error_input').fadeIn('fast');
+    } else if (newTweet == 'text='){
       $('#input_long').text('I can\'t hear you!');
       $('.error_input').fadeIn('fast');
-    } else {
-      $('.error_input').fadeOut('fast');
-      $.post("http://localhost:8080/tweets", newTweet, function(){
-        location.reload();
-      });
-    }
-  event.preventDefault();
+      } else {
+        $('.error_input').fadeOut('fast');
+        $.post("http://localhost:8080/tweets", newTweet, function(){
+          location.reload();
+        });
+       }
+    event.preventDefault();
   });
 
   //toggling new tweet form
   $('#compose').click(function(){
     $('.new-tweet').slideToggle();
     $('textarea').focus();
-  });
+    });
 
 
 });

@@ -18,13 +18,7 @@ module.exports = function makeDataHelpers(db) {
           if (err) throw err;
           results.sort(sortNewestFirst);
           sendTweetsCallback(null, results);
-          // db.close();
         });
      }
     };
-
-
-
-
-
 };

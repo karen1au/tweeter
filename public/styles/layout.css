@@ -35,7 +35,6 @@ body {
   display: none;
 }
 
-
 .error_input:after {
   content: " ";
   position: absolute;
@@ -54,7 +53,6 @@ body {
   position: absolute;
   transform: translateY(-150%);
 }
-
 
 main {
   width: 450px;
