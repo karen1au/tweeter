@@ -1,16 +1,20 @@
-$(document).ready(function() {
-  $('form').submit(function(event){
-    var newTweet = $(this).serialize();
-    $.post(newTweet, function(data){
-      $('/tweets').html(data);
-    });
+// $(document).ready(function() {
+//   $('form').submit(function(event){
+//     var newTweet = $(this).serialize();
+//     if (newTweet.length > 145){
+//       alert('Time to Marie Kondo your tweet...');
+//     } else if (newTweet == 'text='){
+//       alert('I can\'t hear you!');
+//     } else {
+//       $.post(tweetsRoutes, function(data){
 
-    // console.log(newTweet);
-    // .then(function (postTweet) {
-    event.preventDefault();
-    });
+//       }
+//       });
+//     }
+//     event.preventDefault();
+//     });
 
 
 
-  // --- our code goes here ---
-});
+//   // --- our code goes here ---
+// });

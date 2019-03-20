@@ -11,7 +11,7 @@ $(document).ready(function() {
 
   function renderTweets(tweets) {
     for (let individual = 0; individual < tweets.length; individual++) {
-      $('#tweets-container').append(createTweetElement(tweets[individual]));
+      $('#tweets-container').prepend(createTweetElement(tweets[individual]));
     }
   }
 
@@ -46,5 +46,19 @@ $(document).ready(function() {
   }
 
   loadTweets();
+
+  $('form').submit(function(event){
+  var newTweet = $(this).serialize();
+  if (newTweet.length > 145){
+    alert('Time to Marie Kondo your tweet...');
+  } else if (newTweet == 'text='){
+    alert('I can\'t hear you!');
+  } else {
+    $.post("http://localhost:8080/tweets", newTweet, function(){
+      location.reload();
+    });
+  }
+  event.preventDefault();
+  });
 
 });
