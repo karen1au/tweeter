@@ -1,8 +1,21 @@
-# Tweeter Project
+# Tweeterrrrrrr Project
 
 Tweeter is a simple, single-page Twitter clone.
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
+This repository is built to practice my HTML, CSS, JS, jQuery and AJAX front-end skills, and my Node, Express and MongoDB back-end skills.
+
+## What does it do?
+
+With Tweeterrrrrrr, you will be able to post your tweet, simple!
+
+Hitting compose to start create a new tweet.
+![new-tweet](https://github.com/karen1au/tweeter/blob/master/doc/new-tweet.gif?raw=true)
+
+Post a tweet that is within the character limit.
+![submit-error](https://github.com/karen1au/tweeter/blob/master/doc/submit-error.gif?raw=true)
+
+Hover on the tweet you are interested at.
+![hover](https://github.com/karen1au/tweeter/blob/master/doc/hover.gif?raw=true)
 
 ## Getting Started
 
@@ -15,3 +28,8 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+- Body-parser
+- Chance
+- Md5
+- Moment
+- Mongodb
