@@ -29,7 +29,8 @@ $(document).ready(function() {
           <div class="icon">
             <i class="fas fa-flag"></i>
             <i class="fas fa-retweet"></i>
-            <i class="fas fa-heart"></i>
+            <i class="fas fa-heart" id="${data._id}"></i>
+            <span class="likeCount">${data.like_count}</span>
           </div>
         </footer>
       </article>`;
@@ -57,8 +58,6 @@ $(document).ready(function() {
       } else {
         $('.error_input').fadeOut('fast');
         $.post("http://localhost:8080/tweets", newTweet).then(() => {
-          loadTweets();
-        }).then(() => {
           $('textarea').val('');
           $('.counter').text('140');
         })
@@ -72,6 +71,16 @@ $(document).ready(function() {
     $('.new-tweet').slideToggle();
     $('textarea').focus();
     });
+
+  //like-btn
+  $('body').on('click', '.fa-heart', function() {
+    $.ajax({
+      method: 'POST',
+      url: '/tweets/' + this.id
+    });
+
+    location.reload();
+  });
 
 
 });

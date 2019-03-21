@@ -6,8 +6,8 @@ const express       = require('express');
 const tweetsRoutes  = express.Router();
 
 module.exports = function(DataHelpers) {
-
-  tweetsRoutes.get("/", function(req, res) {
+//displaying tweets
+  tweetsRoutes.get("/", (req, res) => {
     const sendTweetsCallback = (err, tweets) => {
       if (err) {
         res.status(500).json({ error: err.message });
@@ -18,7 +18,8 @@ module.exports = function(DataHelpers) {
     DataHelpers.getTweets(sendTweetsCallback);
   });
 
-  tweetsRoutes.post("/", function(req, res) {
+//posting tweet
+  tweetsRoutes.post("/", (req, res) => {
     if (!req.body.text) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
@@ -30,7 +31,8 @@ module.exports = function(DataHelpers) {
       content: {
         text: req.body.text
       },
-      created_at: Date.now()
+      created_at: Date.now(),
+      like_count: 0
     };
 
     DataHelpers.saveTweet(tweet, (err) => {
@@ -41,6 +43,15 @@ module.exports = function(DataHelpers) {
       }
     });
   });
+
+  //clicking like btn
+  tweetsRoutes.post("/:id", (req,res) => {
+    DataHelpers.likeTweet(req.params.id);
+
+  });
+  // tweetsRoutes.get("/register", (req, res) => {
+  //   res.send("register.html");
+  // });
 
   return tweetsRoutes;
 

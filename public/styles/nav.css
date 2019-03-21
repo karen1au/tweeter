@@ -31,7 +31,7 @@
   transform: translateY(-50%);
 }
 
-#nav-bar #compose {
+#nav-bar #compose, #register, #login {
   color: #00a087;
   font-weight: bold;
   padding: 0.5em;
@@ -39,9 +39,10 @@
   border-radius: 5px;
   opacity: 0.8;
   transition: 0.3s;
+  margin-left: 1em;
 }
 
-#nav-bar #compose:hover {
+#nav-bar #compose:hover, #register:hover, #login:hover {
   color: black;
   opacity: 1;
 }

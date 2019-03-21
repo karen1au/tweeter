@@ -1,6 +1,6 @@
 "use strict";
 
-
+let mongo = require("mongodb");
 // Defines helper functions for saving and getting tweets, using the database `db`
 module.exports = function makeDataHelpers(db) {
   return {
@@ -19,6 +19,14 @@ module.exports = function makeDataHelpers(db) {
           results.sort(sortNewestFirst);
           sendTweetsCallback(null, results);
         });
+     },
+
+     likeTweet: function(tweet_id, callback) {
+      const mongoID = new mongo.ObjectId(tweet_id);
+        db.collection("tweets").update(
+        { _id: mongoID},
+        { $inc: { like_count: 1} }
+        );
      }
     };
 };
