@@ -63,7 +63,6 @@ main {
 }
 
 article {
-  background-color: #F4F4F4;
   opacity: 0.7;
   margin: 2em;
   background-color: white;
@@ -114,6 +113,7 @@ article .content {
 .content p {
   position: relative;
   transform: translateY(-30%);
+  overflow-wrap: break-word;
 }
 
 footer {
