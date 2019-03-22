@@ -25,6 +25,25 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 // Mount the tweets routes at the "/tweets" path prefix:
   app.use("/tweets", tweetsRoutes);
 
+    //register form
+  app.post("/register", (req, res) => {
+  if (doesEmailExist(req.body.email)){
+    res.status(400).send('Duplicated email');
+  } else if (req.body.email && req.body.password){
+    const realPw = req.body.password;
+    let userID = generateRandomString();
+    users[userID] = {
+      id: userID,
+      email: req.body.email,
+      password: bcrypt.hashSync(realPw, 10)
+    };
+    req.session.user_ID = userID;
+    res.redirect("/urls");
+  } else {
+    res.status(400).send('Incomplete Information');
+  }
+  });
+
 });
 
 // The `data-helpers` module provides an interface to the database of tweets.
@@ -38,7 +57,16 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
 // The `tweets-routes` module works similarly: we pass it the `DataHelpers` object
 // so it can define routes that use it to interact with the data layer.
-
+function doesEmailExist(newEmail) {
+  let doesEmailExist = false;
+  for ( userID in users) {
+    if (users[userID].email && users[userID].email == newEmail) {
+     doesEmailExist = true;
+     break;
+    }
+  }
+  return doesEmailExist;
+}
 
 
 app.listen(PORT, () => {

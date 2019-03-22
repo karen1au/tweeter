@@ -49,9 +49,7 @@ module.exports = function(DataHelpers) {
     DataHelpers.likeTweet(req.params.id);
 
   });
-  // tweetsRoutes.get("/register", (req, res) => {
-  //   res.send("register.html");
-  // });
+
 
   return tweetsRoutes;
 
