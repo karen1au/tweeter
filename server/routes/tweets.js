@@ -1,7 +1,7 @@
 "use strict";
 
-const userHelper    = require("../lib/util/user-helper")
-
+const UserHelper    = require("../lib/util/user-helper");
+const cookieSession = require('cookie-session');
 const express       = require('express');
 const tweetsRoutes  = express.Router();
 
@@ -25,7 +25,7 @@ module.exports = function(DataHelpers) {
       return;
     }
 
-    const user = req.body.user ? req.body.user : userHelper.generateRandomUser();
+    const user = UserHelper.getUser(req.body.username) ? UserHelper.getUser(req.body.username) : userHelper.generateRandomUser();
     const tweet = {
       user: user,
       content: {

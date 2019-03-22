@@ -47,7 +47,7 @@ $(document).ready(function() {
 
   //post submit form with validation check
   $('.new-tweet form').submit(function(event){
-    const tweetLength = $('textarea').val().trim();
+    const tweetLength = $('.new-tweet textarea').val().trim();
     const newTweet = $(this).serialize();
     if (tweetLength.length > 140){
       $('#input_long').text('Time to Marie Kondo your tweet!');
@@ -74,9 +74,20 @@ $(document).ready(function() {
     $('textarea').focus();
     });
 
+  //toggling register form
   $('#register').click(function(){
     $('#register_form').slideToggle();
   });
+
+  $('#register_form form').submit(function(event){
+    if ($("#register_form input[name='username']").val().length > 0){
+      $("#register_form input[name='username']").focus().css('outline-color', '#FF0000');
+      $('#username-error').text('Username already exists.').fadeIn('fast');
+    }
+
+    // event.preventDefault();
+  });
+
 
   //like-btn
   $('body').on('click', '.fa-heart', function() {

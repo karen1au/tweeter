@@ -33,3 +33,10 @@
   height: 30px;
   margin: 0.5em;
 }
+
+#register_form #username-error {
+  color: red;
+  font-size: 0.8em;
+  margin: 0;
+  /*display: none;*/
+}

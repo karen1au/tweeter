@@ -2,10 +2,34 @@
 
 const Chance = require("chance");
 const chance = new Chance();
-
+const cookieSession = require('cookie-session');
+let mongo = require("mongodb");
 const md5 = require('md5');
 
-module.exports = {
+module.exports = function makeUserHelpers (db) {
+  return {
+
+  saveUser: function(newUser, callback) {
+    db.collection("users").insertOne(newUser);
+    callback(null, true);
+  },
+
+  getAllUser: function (callback) {
+    const extract = db.collection("users").find().toArray((err, results) => {
+      if (err) throw err;
+      callback(null, results);
+    });
+  },
+
+  existAvatar: (username) => {
+    const avatarUrl = `https://vanillicon.com/${md5(username)}`;
+    const avatars = {
+      small:   `${avatarUrl}_50.png`,
+      regular: `${avatarUrl}.png`,
+      large:   `${avatarUrl}_200.png`
+    };
+    return  avatars;
+  },
 
   generateRandomUser: () => {
     const gender    = chance.gender();
@@ -17,7 +41,7 @@ module.exports = {
     if (Math.random() > 0.5) {
       let prefix    = chance.prefix({gender: gender});
       prefix = prefix.replace(".", "");
-      userHandle += prefix
+      userHandle += prefix;
     }
 
     userHandle += lastName;
@@ -32,12 +56,15 @@ module.exports = {
       small:   `${avatarUrlPrefix}_50.png`,
       regular: `${avatarUrlPrefix}.png`,
       large:   `${avatarUrlPrefix}_200.png`
-    }
+    };
 
     return {
       name: userName,
       handle: userHandle,
       avatars: avatars
-    };
-  }
+    }
+
+
+}
 };
+}

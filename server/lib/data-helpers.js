@@ -21,7 +21,7 @@ module.exports = function makeDataHelpers(db) {
         });
      },
 
-     likeTweet: function(tweet_id, callback) {
+     likeTweet: function(tweet_id) {
       const mongoID = new mongo.ObjectId(tweet_id);
         db.collection("tweets").update(
         { _id: mongoID},
