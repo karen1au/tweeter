@@ -92,8 +92,8 @@ $(document).ready(function() {
   //     })
   //   }
 
-    event.preventDefault();
-  });
+  //   event.preventDefault();
+  // });
 
 
   //like-btn
