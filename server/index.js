@@ -10,9 +10,14 @@ const app           = express();
 const {MongoClient} = require("mongodb");
 const MONGODB_URI   = "mongodb://localhost:27017/tweeter";
 const mongo = require("mongodb");
+const bcrypt = require("bcrypt");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['malimalihome']
+}));
 
 MongoClient.connect(MONGODB_URI, (err, db) => {
   if (err){
@@ -32,23 +37,25 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   app.post("/register", async (req, res) => {
     const userExist = await doesUserExist(req.body.username);
   if (userExist){
-    res.status(400).send('Duplicated username');
-  } else if (req.body.username && req.body.password && req.body.fullname){
-    const realPw = req.body.password;
-    const user = {
-      name: req.body.fullname,
-      handle: '@'+req.body.username,
-      avatars: UserHelpers.existAvatar(req.body.username),
-      password: req.body.password
-    };
-
-      UserHelpers.saveUser(user, (err) => {
-        if (err) {
-          res.status(500).json({ error: err.message });
-        } else {
-          res.status(201).send();
-      }
-      });
+    res.status(400);
+    return;
+    } else if (req.body.username && req.body.password && req.body.fullname){
+      const realPw = req.body.password;
+      const user = {
+        name: req.body.fullname,
+        handle: '@'+req.body.username,
+        avatars: UserHelpers.existAvatar(req.body.username),
+        password: bcrypt.hashSync(realPw, 10)
+      };
+        UserHelpers.saveUser(user, (err) => {
+          if (err) {
+            res.status(500).json({ error: err.message });
+          } else {
+            res.status(201).send();
+            // req.session.user_ID = userID;
+            // res.redirect("/");
+          };
+        });
     // const mongoID = new mongo.ObjectId(this._id);
     // req.session.user_ID = mongoID;
   } else {

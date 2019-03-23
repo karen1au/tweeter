@@ -79,13 +79,20 @@ $(document).ready(function() {
     $('#register_form').slideToggle();
   });
 
-  $('#register_form form').submit(function(event){
-    if ($("#register_form input[name='username']").val().length > 0){
-      $("#register_form input[name='username']").focus().css('outline-color', '#FF0000');
-      $('#username-error').text('Username already exists.').fadeIn('fast');
-    }
+  // $('#register_form form').submit(function(event){
+  //   const newUser = $(this).serialize();
+  //   if ($("#register_form input[name='username']").val().length = 0){
+  //     $("#register_form input[name='username']").focus().css('outline-color', '#FF0000');
+  //     $('#username-error').text('Username already exists.').fadeIn('fast');
+  //   } else {
+  //     console.log(newUser);
 
-    // event.preventDefault();
+  //     $.post("http://localhost:8080/register", newUser).then(()=>{
+  //       location.reload();
+  //     })
+  //   }
+
+    event.preventDefault();
   });
 
 

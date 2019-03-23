@@ -14,13 +14,6 @@ module.exports = function makeUserHelpers (db) {
     callback(null, true);
   },
 
-  getAllUser: function (callback) {
-    const extract = db.collection("users").find().toArray((err, results) => {
-      if (err) throw err;
-      callback(null, results);
-    });
-  },
-
   existAvatar: (username) => {
     const avatarUrl = `https://vanillicon.com/${md5(username)}`;
     const avatars = {
